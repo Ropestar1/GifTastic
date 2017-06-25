@@ -49,26 +49,39 @@ function displayResults() {
       method: 'GET'
     }).done(function(response) {
       //add function to put stuff into the results
+      
+
       console.log(queryTerm);
       console.log(response);
+      console.log(response.length);
 
-      // // Creating a div to hold the movie
-      // var movieDiv = $('<div class="movie">');
+      // Creating a div to hold the movie
+      // var topicDiv = $('<div class="topic-result">');
 
       // // Storing the rating data
-      // var rating = response.Rated;
+      // var rating = response.data[0].rating;
+      // console.log('Rating: ', rating);
 
       // // Creating an element to have the rating displayed
-      // var pOne = $("<p>").text("Rating: " + rating);
+      // var ratingDisplay = $("<p>").text("Rating: " + rating);
 
       // // Displaying the rating
-      // movieDiv.append(pOne);
+      // topicDiv.append(ratingDisplay);
 
-      // // Storing the release year
-      // var released = response.Released;
+      // // // Storing the release year
+      // var stillImageURL = response.data[0].images.downsized_still.url;
 
-      // // Creating an element to hold the release year
-      // var pTwo = $("<p>").text("Released: " + released);
+      // // Creating an element to hold the image
+      // var stillImage = $("<img>").attr("src", stillImageURL);
+
+      // // Appending the image
+      // topicDiv.append(stillImage);
+
+
+
+
+
+
 
       // // Displaying the release year
       // movieDiv.append(pTwo);
@@ -85,14 +98,12 @@ function displayResults() {
       // // Retrieving the URL for the image
       // var imgURL = response.Poster;
 
-      // // Creating an element to hold the image
-      // var image = $("<img>").attr("src", imgURL);
 
-      // // Appending the image
-      // movieDiv.append(image);
+
+    
 
       // // Putting the entire movie above the previous movies
-      // $("#movies-view").prepend(movieDiv);
+      $("#results").prepend(topicDiv); //<--CHANGE movieDiv to variable I'm using
     });
 }
 
