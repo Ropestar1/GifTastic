@@ -12,8 +12,8 @@
 <body>
 	<div class="container">
 		<div class="row">
-		  <div class="col-md-12 topics-styling" id="topics-buttons">
-		  </div>
+			<div class="col-md-12 topics-styling" id="topics-buttons">
+			</div>
 		</div>
 	</div>
 
@@ -21,14 +21,21 @@
 
 	<div class="container">
 		<div class="row">
-		  <div class="col-md-8">
+			<div class="col-md-8">
 		  	RESULTS GO HERE
-		  </div>
-		  <div class="col-md-4">
-		  	SEARCH GOES HERE
-		  </div>
+			</div>
+			<div class="col-md-4">
+		  		<form id="movie-form">
+     				<label for="movie-input">Search:</label>
+      				<input type="text" id="topic-input">
+      					<br>
+      					<br>
+      				<!-- Button triggers new movie to be added -->
+      				<input id="add-topic" type="submit" value="Search">
+    			</form>
+		  	</div>
 		</div>
-	</div>	
+	</div>
 	
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<script type="text/javascript" src="assets/javascript/javascript.js"></script>
