@@ -48,62 +48,45 @@ function displayResults() {
       url: queryURL,
       method: 'GET'
     }).done(function(response) {
-      //add function to put stuff into the results
-      
+		//add function to put stuff into the results
+		$('#results').empty();
 
-      console.log(queryTerm);
-      console.log(response);
-      console.log(response.length);
+		// console.log(queryTerm);
+		// console.log(response);
+		// console.log(response.data.length);
+		
+		for (var i = 0; i < response.data.length; i++) {
+        	// console.log(response.data.length);
+        	// Creating a div to hold the movie
+	    	var topicDiv = $('<div class="topic-result">');
 
-      // Creating a div to hold the movie
-      // var topicDiv = $('<div class="topic-result">');
+	    	// Storing the rating data
+	    	var rating = response.data[i].rating;
+	    	console.log('Rating: ', rating);
 
-      // // Storing the rating data
-      // var rating = response.data[0].rating;
-      // console.log('Rating: ', rating);
+			// Creating an element to have the rating displayed
+			var ratingDisplay = $("<p>").text("Rating: " + rating);
 
-      // // Creating an element to have the rating displayed
-      // var ratingDisplay = $("<p>").text("Rating: " + rating);
+			// Displaying the rating
+			topicDiv.append(ratingDisplay);
 
-      // // Displaying the rating
-      // topicDiv.append(ratingDisplay);
+			// Storing the release year
+			var stillImageURL = response.data[i].images.downsized_still.url;
 
-      // // // Storing the release year
-      // var stillImageURL = response.data[0].images.downsized_still.url;
+			// Creating an element to hold the image
+			var stillImage = $("<img>").attr("src", stillImageURL);
 
-      // // Creating an element to hold the image
-      // var stillImage = $("<img>").attr("src", stillImageURL);
+			// Appending the image
+			topicDiv.append(stillImage);
 
-      // // Appending the image
-      // topicDiv.append(stillImage);
-
-
-
-
-
-
-
-      // // Displaying the release year
-      // movieDiv.append(pTwo);
-
-      // // Storing the plot
-      // var plot = response.Plot;
-
-      // // Creating an element to hold the plot
-      // var pThree = $("<p>").text("Plot: " + plot);
-
-      // // Appending the plot
-      // movieDiv.append(pThree);
-
-      // // Retrieving the URL for the image
-      // var imgURL = response.Poster;
+			// Putting the entire movie above the previous movies
+			$("#results").append(topicDiv);
+		}
 
 
 
-    
+		//add the gif swap click here!!!!!!
 
-      // // Putting the entire movie above the previous movies
-      $("#results").prepend(topicDiv); //<--CHANGE movieDiv to variable I'm using
     });
 }
 
