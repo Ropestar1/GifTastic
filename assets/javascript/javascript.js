@@ -23,7 +23,7 @@ function topicsIterator() {
 		// console.log('end of button', topicsButton);
 	}	
 
-	$("#add-topic").on("click", function(event) {//may have an issue with teh jquery call
+	$("#add-topic").click(function(event) {
         event.preventDefault();
 
 		// This line will grab the text from the input box
@@ -35,6 +35,8 @@ function topicsIterator() {
 
 		topicsIterator();
 	});
+
+	$('.topics-buttons').click(displayResults);
 }
 
 //WORK ON API AJAX AND JSON
@@ -52,13 +54,13 @@ function displayResults() {
 		$('#results').empty();
 
 		// console.log(queryTerm);
-		// console.log(response);
+		console.log(response);
 		// console.log(response.data.length);
-		
 		for (var i = 0; i < response.data.length; i++) {
-        	// console.log(response.data.length);
+        	console.log(response.data.length);
         	// Creating a div to hold the movie
 	    	var topicDiv = $('<div class="topic-result">');
+	    	var gifImage = $('<img>');
 
 	    	// Storing the rating data
 	    	var rating = response.data[i].rating;
@@ -70,26 +72,59 @@ function displayResults() {
 			// Displaying the rating
 			topicDiv.append(ratingDisplay);
 
-			// Storing the release year
-			var stillImageURL = response.data[i].images.downsized_still.url;
+			// Storing still image url
+			var gifImageURL = response.data[i].images.downsized_still.url;
+
+			// Storing the animate gif image url
+			var animateURL = response.data[i].images.downsized_medium.url;
 
 			// Creating an element to hold the image
-			var stillImage = $("<img>").attr("src", stillImageURL);
-
+			function gifGeneratorURLs () {
+				gifImage.attr('src', gifImageURL);
+				gifImage.attr('data-image-still', gifImageURL);
+			 	gifImage.attr('data-image-animate', animateURL);
+			 	gifImage.attr('data-state', 'still');
+				gifImage.addClass('.gif');
+			}
+			
+			gifGeneratorURLs();
+			
 			// Appending the image
-			topicDiv.append(stillImage);
+			topicDiv.append(gifImage);
+			//ISSUE: Find a way to get the data-image-still attribute on the image tag
 
 			// Putting the entire movie above the previous movies
 			$("#results").append(topicDiv);
 		}
-
-
-
-		//add the gif swap click here!!!!!!
-
     });
 }
 
+//LAST STEP!!!!!! click isn't registering for function
+// $(document).ready(function() {
+	// $('.gif').on('click', function() {
+	function gifSwap() {
+		console.log('click working');
+		// The attr jQuery method allows us to get or set the value of any attribute on our HTML element
+		var state = $(this).attr('data-state');
+		var animate = $(this).attr('data-image-animate');
+		var still = $(this).attr('src', $(this).attr('data-image-still'));
+		
+		console.log(this);
+
+		// If the clicked image's state is still, update its src attribute to what its data-animate value is.
+		// Then, set the image's data-state to animate
+		// Else set src to the data-still value
+		if (state === 'still') {
+			$(this).attr('src', animate );
+			$(this).attr('data-state', 'animate');
+		} else {
+			$(this).attr('src', $(this).attr('data-still'));
+			$(this).attr('data-state', 'still');
+		}
+	}
+// 	})
+// })
+
 //FUNCTION CALLS
 topicsIterator();
-$(document).on("click", ".topics-buttons", displayResults);
+$(document).on('click', '.gif', gifSwap);
