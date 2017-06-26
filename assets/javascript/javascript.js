@@ -1,5 +1,5 @@
 //VARIABLES
-var topics = ['Super Mario', 'Call of Duty', 'Bomberman', 'Megaman'];
+var topics = ['Super Mario', 'Call of Duty', 'Bomberman', 'Megaman', 'Sonic the Hedgehog', 'Castlevania', 'Street Fighter', 'Devil May Cry', 'God of War'];
 
 //FUNCTION DECLARATIONS
 function topicsIterator() {
