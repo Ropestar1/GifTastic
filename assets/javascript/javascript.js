@@ -84,7 +84,7 @@ function displayResults() {
 				gifImage.attr('data-image-still', gifImageURL);
 			 	gifImage.attr('data-image-animate', animateURL);
 			 	gifImage.attr('data-state', 'still');
-				gifImage.addClass('.gif');
+				gifImage.addClass('gif');
 			}
 			
 			gifGeneratorURLs();
@@ -97,6 +97,7 @@ function displayResults() {
 			$("#results").append(topicDiv);
 		}
     });
+
 }
 
 //LAST STEP!!!!!! click isn't registering for function
