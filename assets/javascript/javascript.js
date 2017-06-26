@@ -3,10 +3,10 @@ var topics = ['Super Mario', 'Call of Duty', 'Bomberman', 'Megaman'];
 
 //FUNCTION DECLARATIONS
 function topicsIterator() {
+	
 	$('.topics-styling').empty();
 
-	for (var i = 0; i < topics.length; i++) {
-		
+	for (var i = 0; i < topics.length; i++) {		
 		//	HOW DOES THIS JQUERY CALL NOT AFFECT EXISTING BUTTONS?????
 		var topicsButton = $('<button>');
 		//console.log('initial', topicsButton);
@@ -21,7 +21,7 @@ function topicsIterator() {
         // console.log('text added', topicsButton);
 		$('.topics-styling').append(topicsButton); //INSERT VARIABLE AT END OF THIS	
 		// console.log('end of button', topicsButton);
-	}	
+	}
 
 	$("#add-topic").click(function(event) {
         event.preventDefault();
@@ -30,8 +30,10 @@ function topicsIterator() {
         var userTopicText = $("#topic-input").val().trim();
 
         // The movie from the textbox is then added to our array
-        topics.push(userTopicText);
-        userTopicText = $("#topic-input").val("");
+        if (topics.indexOf(userTopicText) === -1 && userTopicText != '') {
+        	topics.push(userTopicText); //	WHY ARE DUPLICATES BEING CREATED???
+        	userTopicText = $('#topic-input').val('');
+    	}
 
 		topicsIterator();
 	});
