@@ -60,8 +60,8 @@ function displayResults() {
 		for (var i = 0; i < response.data.length; i++) {
         	console.log(response.data.length);
         	// Creating a div to hold the movie
-	    	var topicDiv = $('<div class="topic-result">');
-	    	var gifImage = $('<img>');
+	    	var topicDiv = $('<div class="col-md-4 topic-result">');
+	    	var gifImage = $('<img class="img-responsive">');
 
 	    	var rating = response.data[i].rating;
 	    	//console.log('Rating: ', rating);
